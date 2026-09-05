@@ -20,7 +20,7 @@ const heroImage: string | null = "/images/hero/hero-team.jpg";
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center py-12 lg:py-24">
 
       <!-- ── Columna izquierda ── -->
-      <div class="flex flex-col">
+      <div class="flex flex-col items-center text-center lg:items-start lg:text-left">
 
         <!-- Etiqueta -->
         <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.3em] text-prisma-red mb-5 lg:mb-8">
@@ -33,7 +33,7 @@ const heroImage: string | null = "/images/hero/hero-team.jpg";
           <img
             src="/favicon.png"
             alt="Logo Prisma Global Club"
-            class="w-28 h-28 sm:w-36 sm:h-36 lg:w-52 lg:h-52 object-contain shrink-0 drop-shadow-sm mb-4 sm:mb-0"
+            class="w-28 h-28 sm:w-36 sm:h-36 lg:w-52 lg:h-52 object-contain shrink-0 drop-shadow-sm mb-4 sm:mb-0 mx-auto lg:mx-0"
             loading="eager"
             fetchpriority="high"
           />
@@ -45,17 +45,17 @@ const heroImage: string | null = "/images/hero/hero-team.jpg";
         </div>
 
         <!-- Mantra -->
-        <p class="text-base sm:text-lg font-semibold text-prisma-gray italic mb-4 leading-snug max-w-xs sm:max-w-sm">
+        <p class="text-base sm:text-lg font-semibold text-prisma-gray italic mb-4 leading-snug max-w-xs sm:max-w-sm mx-auto lg:mx-0">
           "Excelencia que transforma realidades."
         </p>
 
         <!-- Descripción -->
-        <p class="text-sm sm:text-[15px] text-prisma-gray leading-relaxed max-w-xs sm:max-w-sm mb-8">
+        <p class="text-sm sm:text-[15px] text-prisma-gray leading-relaxed max-w-xs sm:max-w-sm mb-8 mx-auto lg:mx-0">
           Una comunidad juvenil que convierte el talento, el voluntariado y la colaboración en proyectos capaces de generar impacto real.
         </p>
 
         <!-- CTAs -->
-        <div class="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+        <div class="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 w-full sm:w-auto">
           <Button href="#prisma" variant="primary" size="md">
             Conoce Prisma
           </Button>

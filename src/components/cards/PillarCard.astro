@@ -54,12 +54,12 @@ const { title, description, ods, icon, image, bgColor } = Astro.props;
   </div>
 
   <!-- Columna 3: Foto del proyecto (solo tablet/desktop) -->
-  <div class="hidden lg:block bg-prisma-warm-dark overflow-hidden">
+  <div class="hidden lg:block bg-prisma-warm-dark overflow-hidden p-2">
     {image ? (
       <img
         src={image}
         alt={`Proyecto: ${title}`}
-        class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 ease-out"
+        class="w-full h-full object-contain hover:scale-105 transition-transform duration-500 ease-out"
         loading="lazy"
         onerror="this.parentElement.style.background='#f5f5f5'"
       />
@@ -76,11 +76,11 @@ const { title, description, ods, icon, image, bgColor } = Astro.props;
 
   <!-- Foto en mobile/tablet (debajo del contenido) -->
   {image && (
-    <div class="lg:hidden h-44 bg-prisma-warm-dark overflow-hidden sm:col-span-2">
+    <div class="lg:hidden h-56 bg-prisma-warm-dark overflow-hidden sm:col-span-2 p-2">
       <img
         src={image}
         alt={`Proyecto: ${title}`}
-        class="w-full h-full object-cover"
+        class="w-full h-full object-contain"
         loading="lazy"
       />
     </div>

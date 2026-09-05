@@ -16,32 +16,31 @@ import { orgChart } from '../../data/organization';
       <p class="text-prisma-gray">Una estructura que convierte propósito en acción.</p>
     </div>
 
-    <!-- Organigrama Desktop (Estilo Mapa/Árbol) -->
-    <div class="hidden lg:flex flex-col items-center">
+    <!-- Organigrama Desktop (Estilo Mapa Moderno) -->
+    <div class="hidden lg:flex flex-col items-center mt-10">
       {orgChart.map((level, li) => (
         <div class="flex flex-col items-center w-full">
+          
           <!-- Línea vertical conectora desde el nivel anterior -->
           {li > 0 && (
-            <div class="w-px h-10 bg-prisma-dark/40"></div>
+            <div class="w-[2px] h-12 bg-prisma-border"></div>
           )}
 
-          <!-- Caja del Nivel (Padre) -->
-          <div class="border-[1.5px] border-prisma-dark rounded-xl overflow-hidden shadow-sm bg-white text-center w-64 relative z-10">
-            <div class="bg-prisma-red/60 text-prisma-dark font-black p-2.5 text-sm uppercase tracking-wide">
-              {level.label}
-            </div>
+          <!-- Etiqueta del Nivel (Pill badge) -->
+          <div class="bg-prisma-red text-white font-bold px-8 py-3 text-[11px] uppercase tracking-[0.2em] rounded-full shadow-md relative z-10">
+            {level.label}
           </div>
 
-          <!-- Línea vertical conectora hacia los hijos -->
-          <div class="w-px h-8 bg-prisma-dark/40"></div>
+          <!-- Línea vertical conectora hacia los departamentos -->
+          <div class="w-[2px] h-10 bg-prisma-border"></div>
 
-          <!-- Hijos (Departamentos) -->
+          <!-- Contenedor de Departamentos (Hijos) -->
           <div class="flex justify-center relative w-full">
             {level.departments.map((dept, index) => (
-              <div class="relative flex flex-col items-center px-4 w-56">
-                <!-- Línea horizontal conectora (solo si hay más de 1 hijo) -->
+              <div class="relative flex flex-col items-center px-4 w-60">
+                <!-- Línea horizontal conectora (solo si hay más de 1 departamento) -->
                 {level.departments.length > 1 && (
-                  <div class="absolute top-0 h-px bg-prisma-dark/40"
+                  <div class="absolute top-0 h-[2px] bg-prisma-border"
                        class:list={[
                          index === 0 ? "left-1/2 right-0" : 
                          index === level.departments.length - 1 ? "left-0 right-1/2" : 
@@ -50,19 +49,23 @@ import { orgChart } from '../../data/organization';
                   </div>
                 )}
                 
-                <!-- Línea vertical individual hacia la caja -->
-                <div class="w-px h-6 bg-prisma-dark/40"></div>
+                <!-- Línea vertical individual que baja a la tarjeta -->
+                <div class="w-[2px] h-6 bg-prisma-border"></div>
                 
-                <!-- Caja del Departamento -->
-                <div class="border-[1.5px] border-prisma-dark rounded-xl overflow-hidden bg-white text-center w-full shadow-sm">
-                   <div class="bg-prisma-red/30 text-prisma-dark font-bold p-2 text-xs uppercase border-b-[1.5px] border-prisma-dark leading-tight h-12 flex items-center justify-center">
-                     {dept.name}
+                <!-- Tarjeta de Departamento Moderna -->
+                <div class="bg-white rounded-2xl border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)] overflow-hidden w-full transition-transform hover:-translate-y-1 duration-300">
+                   <!-- Cabecera del departamento -->
+                   <div class="bg-gray-50/80 px-4 py-3.5 border-b border-gray-100 flex items-center justify-center min-h-[3.5rem]">
+                     <span class="text-[10px] font-black uppercase tracking-widest text-prisma-red text-center leading-tight">
+                       {dept.name}
+                     </span>
                    </div>
-                   <div class="p-3 text-sm text-prisma-dark font-medium space-y-1">
+                   <!-- Lista de miembros -->
+                   <div class="p-5 space-y-4">
                      {dept.members.map((m) => (
-                       <div>
-                         <span class="block">{m.name}</span>
-                         {/* Opcional: mostrar rol en gris <span class="block text-[10px] text-prisma-gray">{m.role}</span> */}
+                       <div class="flex flex-col items-center text-center">
+                         <span class="text-[14px] font-bold text-prisma-dark leading-snug">{m.name}</span>
+                         <span class="text-[10px] uppercase tracking-wider text-prisma-gray mt-1">{m.role}</span>
                        </div>
                      ))}
                    </div>

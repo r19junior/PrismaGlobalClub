@@ -10,7 +10,7 @@ interface Props {
 const {
   title,
   description = 'Prisma Global Club conecta jóvenes, voluntariado y proyectos de impacto social para transformar realidades con visión global.',
-  ogImage = '/og-image.jpg',
+  ogImage = '/favicon.png',
 } = Astro.props;
 
 const canonicalUrl = Astro.url.href;
@@ -37,8 +37,6 @@ const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${siteBase}${ogI
     <meta property="og:description" content={description} />
     <meta property="og:url"         content={canonicalUrl} />
     <meta property="og:image"       content={ogImageAbsolute} />
-    <meta property="og:image:width"  content="1200" />
-    <meta property="og:image:height" content="630" />
     <meta property="og:locale"      content="es_PE" />
     <meta property="og:site_name"   content="Prisma Global Club" />
 

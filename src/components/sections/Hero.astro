@@ -7,7 +7,7 @@ const heroImage: string | null = "/images/hero/hero-team.jpg";
 
 <section
   id="inicio"
-  class="relative min-h-screen flex items-center overflow-hidden bg-prisma-white pt-16 lg:pt-0"
+  class="relative min-h-screen flex flex-col overflow-hidden bg-prisma-white pt-16 lg:pt-20"
   aria-label="Sección principal"
 >
   <!-- Fondo decorativo -->
@@ -16,77 +16,67 @@ const heroImage: string | null = "/images/hero/hero-team.jpg";
     <div class="absolute -top-20 -right-20 w-[300px] h-[300px] lg:w-[500px] lg:h-[500px] rounded-full border border-prisma-border opacity-20"></div>
   </div>
 
-  <div class="max-w-6xl mx-auto px-0 sm:px-6 lg:px-8 w-full relative z-10">
-    <div class="flex flex-col lg:grid lg:grid-cols-2 gap-0 lg:gap-20 items-center py-0 lg:py-24">
+  <div class="w-full relative z-10 flex-1 flex flex-col">
+    <!-- ── Foto panorámica superior ── -->
+    <div class="w-full relative max-w-7xl mx-auto lg:px-8">
+      {heroImage ? (
+        <img
+          src={heroImage}
+          alt="Equipo Prisma Global Club"
+          class="w-full h-[250px] sm:h-[400px] lg:h-[550px] object-cover object-top lg:rounded-2xl lg:shadow-md"
+          loading="eager"
+          fetchpriority="high"
+        />
+      ) : (
+        <div class="w-full h-72 lg:h-96 bg-prisma-warm lg:rounded-2xl flex items-center justify-center" aria-hidden="true">
+          <img src="/favicon.png" alt="" class="w-24 h-24 object-contain opacity-20" />
+        </div>
+      )}
+    </div>
 
-      <!-- ── Columna derecha: foto (En móvil va arriba) ── -->
-      <div class="order-1 lg:order-2 w-full relative">
-        {heroImage ? (
-          <img
-            src={heroImage}
-            alt="Equipo Prisma Global Club"
-            class="w-full h-[250px] sm:h-[350px] lg:h-auto lg:max-h-[480px] object-cover lg:object-contain lg:rounded-2xl lg:shadow-lg lg:bg-prisma-warm"
-            loading="eager"
-            fetchpriority="high"
-          />
-        ) : (
-          <div class="w-full h-72 lg:h-96 bg-prisma-warm lg:rounded-2xl flex items-center justify-center" aria-hidden="true">
-            <img src="/favicon.png" alt="" class="w-24 h-24 object-contain opacity-20" />
-          </div>
-        )}
+    <!-- ── Tarjeta de contenido (superpuesta) ── -->
+    <div class="flex flex-col items-center text-center relative z-20 -mt-32 sm:-mt-40 lg:-mt-48 bg-white mx-6 sm:mx-12 lg:mx-auto lg:max-w-4xl p-8 sm:p-12 lg:p-16 rounded-t-3xl lg:rounded-3xl shadow-[0_-10px_40px_rgba(0,0,0,0.08)] lg:shadow-[0_20px_50px_rgba(0,0,0,0.1)] mb-16 lg:mb-24">
+
+      <!-- Etiqueta -->
+      <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.3em] text-prisma-red mb-4 lg:mb-6">
+        Bienvenido a
+      </span>
+
+      <!-- Favicon + Título -->
+      <div class="flex flex-col items-center mb-6 lg:mb-8">
+        <img
+          src="/favicon.png"
+          alt="Logo Prisma Global Club"
+          class="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 object-contain shrink-0 drop-shadow-sm mb-4"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <h1 class="font-black leading-[1.05] tracking-tight text-prisma-dark">
+          <span class="text-4xl sm:text-5xl lg:text-6xl block">Prisma</span>
+          <span class="text-4xl sm:text-5xl lg:text-6xl text-prisma-red block">Global</span>
+          <span class="text-4xl sm:text-5xl lg:text-6xl block">Club.</span>
+        </h1>
       </div>
 
-      <!-- ── Columna izquierda: contenido (En móvil se superpone a la foto) ── -->
-      <div class="order-2 lg:order-1 flex flex-col items-center text-center lg:items-start lg:text-left relative z-20 -mt-32 sm:-mt-40 lg:mt-0 bg-white lg:bg-transparent mx-6 sm:mx-12 lg:mx-0 p-8 sm:p-10 lg:p-0 rounded-t-3xl lg:rounded-none shadow-[0_-10px_40px_rgba(0,0,0,0.08)] lg:shadow-none">
+      <!-- Mantra -->
+      <p class="text-base sm:text-lg lg:text-xl font-semibold text-prisma-gray italic mb-4 leading-snug max-w-sm lg:max-w-md mx-auto">
+        "Excelencia que transforma realidades."
+      </p>
 
-        <!-- Etiqueta -->
-        <span class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.3em] text-prisma-red mb-4 lg:mb-8">
-          Bienvenido a
-        </span>
+      <!-- Descripción -->
+      <p class="text-sm sm:text-base lg:text-lg text-prisma-gray leading-relaxed max-w-sm lg:max-w-lg mb-8 lg:mb-10 mx-auto">
+        Una comunidad juvenil que convierte el talento, el voluntariado y la colaboración en proyectos capaces de generar impacto real.
+      </p>
 
-        <!-- Mobile: favicon arriba, h1 abajo -->
-        <!-- Desktop: favicon + h1 en fila -->
-        <div class="flex flex-col lg:flex-row lg:items-center lg:gap-6 mb-6 lg:mb-8">
-          <img
-            src="/favicon.png"
-            alt="Logo Prisma Global Club"
-            class="w-32 h-32 sm:w-40 sm:h-40 lg:w-52 lg:h-52 object-contain shrink-0 drop-shadow-sm mb-4 lg:mb-0 mx-auto lg:mx-0"
-            loading="eager"
-            fetchpriority="high"
-          />
-          <h1 class="font-black leading-[1.05] tracking-tight text-prisma-dark">
-            <span class="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl block">Prisma</span>
-            <span class="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl text-prisma-red block">Global</span>
-            <span class="text-4xl sm:text-5xl lg:text-5xl xl:text-6xl block">Club.</span>
-          </h1>
-        </div>
-
-        <!-- Mantra -->
-        <p class="text-base sm:text-lg font-semibold text-prisma-gray italic mb-4 leading-snug max-w-xs sm:max-w-sm mx-auto lg:mx-0">
-          "Excelencia que transforma realidades."
-        </p>
-
-        <!-- Descripción -->
-        <p class="text-sm sm:text-[15px] text-prisma-gray leading-relaxed max-w-xs sm:max-w-sm mb-8 mx-auto lg:mx-0">
-          Una comunidad juvenil que convierte el talento, el voluntariado y la colaboración en proyectos capaces de generar impacto real.
-        </p>
-
-        <!-- CTAs -->
-        <div class="flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 w-full sm:w-auto">
-          <Button href="#prisma" variant="primary" size="md">
-            Conoce Prisma
-          </Button>
-          <Button href="#cta" variant="secondary" size="md">
-            Quiero formar parte
-          </Button>
-        </div>
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row flex-wrap justify-center gap-3 sm:gap-5 w-full sm:w-auto">
+        <Button href="#prisma" variant="primary" size="lg">
+          Conoce Prisma
+        </Button>
+        <Button href="#cta" variant="secondary" size="lg">
+          Quiero formar parte
+        </Button>
       </div>
     </div>
-  </div>
-
-  <!-- Scroll indicator — solo desktop -->
-  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 opacity-25">
-    <span class="text-[10px] font-semibold tracking-[0.25em] uppercase text-prisma-gray">Descubre</span>
-    <div class="w-px h-10 bg-prisma-gray"></div>
   </div>
 </section>

@@ -10,10 +10,13 @@ interface Props {
 const {
   title,
   description = 'Prisma Global Club conecta jóvenes, voluntariado y proyectos de impacto social para transformar realidades con visión global.',
-  ogImage = '/og-image.png',
+  ogImage = '/og-image.jpg',
 } = Astro.props;
 
 const canonicalUrl = Astro.url.href;
+// URL absoluta para Open Graph (requerida por WhatsApp, Twitter, etc.)
+const siteBase = Astro.url.origin;
+const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${siteBase}${ogImage}`;
 ---
 
 <!doctype html>
@@ -28,22 +31,24 @@ const canonicalUrl = Astro.url.href;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
 
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn, Telegram) -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:locale" content="es_PE" />
-    <meta property="og:site_name" content="Prisma Global Club" />
+    <meta property="og:url"         content={canonicalUrl} />
+    <meta property="og:image"       content={ogImageAbsolute} />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale"      content="es_PE" />
+    <meta property="og:site_name"   content="Prisma Global Club" />
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <!-- Twitter / X -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image"       content={ogImageAbsolute} />
 
-    <!-- Fuente Inter (Google Fonts) -->
+    <!-- Fuente Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

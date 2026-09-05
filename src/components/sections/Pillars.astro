@@ -4,25 +4,24 @@ import PillarCard from '../cards/PillarCard.astro';
 import { pillars } from '../../data/pillars';
 ---
 
-<section id="pilares" class="py-24 lg:py-32 bg-prisma-warm" aria-labelledby="pillars-title">
+<section id="pilares" class="py-16 lg:py-32 bg-prisma-warm" aria-labelledby="pillars-title">
   <Container>
-    <div class="max-w-2xl mb-16">
-      <span class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-prisma-red mb-4">
+    <div class="max-w-2xl mb-10 lg:mb-16">
+      <span class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-prisma-red mb-3 lg:mb-4">
         Áreas de acción
       </span>
-      <h2 id="pillars-title" class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight text-prisma-dark mb-5">
+      <h2 id="pillars-title" class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight text-prisma-dark mb-4">
         Nuestros pilares de acción
       </h2>
-      <p class="text-prisma-gray leading-relaxed">
+      <p class="text-prisma-gray leading-relaxed text-sm sm:text-base">
         Los Pilares de Acción son los campos que sostienen la misión de contribuir al desarrollo de una mejor comunidad, siguiendo los lineamientos de los ODS de las Naciones Unidas adaptados a necesidades locales.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-px bg-prisma-border">
+    <!-- Lista vertical de pilares -->
+    <div class="flex flex-col gap-4 sm:gap-6">
       {pillars.map((pillar) => (
-        <div class="bg-prisma-warm">
-          <PillarCard {...pillar} />
-        </div>
+        <PillarCard {...pillar} />
       ))}
     </div>
   </Container>

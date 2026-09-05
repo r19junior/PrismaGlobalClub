@@ -1,18 +1,15 @@
 ---
 import Container from '../ui/Container.astro';
 
-// Foto del equipo en la sección "Quiénes somos"
-// Pasos: coloca la imagen en public/images/team/team-01.jpg
-// La imagen aparece automáticamente al existir el archivo
 const teamPhoto = "/images/team/team-01.jpg";
 const teamPhotoCover = "/images/team/team-cover.jpg";
 ---
 
-<section id="prisma" class="py-24 lg:py-32 bg-prisma-white" aria-labelledby="welcome-title">
+<section id="prisma" class="py-16 lg:py-32 bg-prisma-white" aria-labelledby="welcome-title">
   <Container>
 
-    <!-- Foto panorámica del equipo (team-cover) -->
-    <div class="mb-16 rounded-2xl overflow-hidden h-64 lg:h-80 bg-prisma-warm-dark">
+    <!-- Foto panorámica (oculta si no existe) -->
+    <div class="mb-10 lg:mb-16 rounded-2xl overflow-hidden h-48 sm:h-64 lg:h-80 bg-prisma-warm-dark">
       <img
         src={teamPhotoCover}
         alt="Equipo completo de Prisma Global Club"
@@ -22,17 +19,17 @@ const teamPhotoCover = "/images/team/team-cover.jpg";
       />
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-24 items-start">
 
-      <!-- Texto editorial -->
+      <!-- Texto -->
       <div>
-        <span class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-prisma-red mb-5">
+        <span class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-prisma-red mb-4 lg:mb-5">
           Quiénes somos
         </span>
-        <h2 id="welcome-title" class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight text-prisma-dark mb-8">
+        <h2 id="welcome-title" class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight text-prisma-dark mb-6 lg:mb-8">
           Una comunidad que transforma desde la acción.
         </h2>
-        <div class="space-y-5 text-prisma-gray leading-relaxed">
+        <div class="space-y-4 text-prisma-gray leading-relaxed text-sm sm:text-base">
           <p>
             Prisma Global Club es una organización juvenil que promueve el voluntariado, la formación y el impacto social a través de proyectos sostenibles en comunidades locales.
           </p>
@@ -42,11 +39,9 @@ const teamPhotoCover = "/images/team/team-cover.jpg";
         </div>
       </div>
 
-      <!-- Foto del equipo + palabras clave -->
-      <div class="lg:pt-4 space-y-8">
-
-        <!-- Foto secundaria del equipo (team-01) -->
-        <div class="rounded-xl overflow-hidden h-48 bg-prisma-warm-dark">
+      <!-- Foto secundaria + palabras clave -->
+      <div class="space-y-6 lg:pt-4">
+        <div class="rounded-xl overflow-hidden h-40 sm:h-48 bg-prisma-warm-dark">
           <img
             src={teamPhoto}
             alt="Voluntarios de Prisma en actividad"
@@ -56,7 +51,6 @@ const teamPhotoCover = "/images/team/team-cover.jpg";
           />
         </div>
 
-        <!-- Palabras clave -->
         <div class="grid grid-cols-2 gap-px bg-prisma-border">
           {[
             { word: 'Voluntariado', desc: 'Acción comprometida' },
@@ -64,11 +58,11 @@ const teamPhotoCover = "/images/team/team-cover.jpg";
             { word: 'Impacto',     desc: 'Resultados medibles' },
             { word: 'Comunidad',   desc: 'Red de líderes' },
           ].map((item) => (
-            <div class="bg-prisma-white p-6 group hover:bg-prisma-red-muted transition-colors duration-200">
-              <p class="text-xs font-semibold uppercase tracking-wider text-prisma-gray-light mb-1 group-hover:text-prisma-red transition-colors duration-200">
+            <div class="bg-prisma-white p-5 sm:p-6 group hover:bg-prisma-red-muted transition-colors duration-200">
+              <p class="text-[10px] sm:text-xs font-semibold uppercase tracking-wider text-prisma-gray-light mb-1 group-hover:text-prisma-red transition-colors duration-200">
                 {item.desc}
               </p>
-              <p class="text-lg font-black text-prisma-dark leading-none">
+              <p class="text-base sm:text-lg font-black text-prisma-dark leading-none">
                 {item.word}
               </p>
             </div>

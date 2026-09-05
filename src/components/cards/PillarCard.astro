@@ -4,52 +4,85 @@ import type { Pillar } from '../../data/pillars';
 
 interface Props extends Pillar {}
 
-const { number, title, description, ods, icon, image } = Astro.props;
+const { title, description, ods, icon, image, bgColor } = Astro.props;
 ---
 
-<article class="group relative flex flex-col border-t border-prisma-border hover:border-prisma-red transition-colors duration-300 cursor-default overflow-hidden">
+<article class="grid grid-cols-1 sm:grid-cols-[180px_1fr] lg:grid-cols-[220px_1fr_220px] gap-px bg-prisma-border rounded-2xl overflow-hidden shadow-sm">
 
-  <!-- Imagen del proyecto -->
-  {image ? (
-    <div class="h-48 overflow-hidden bg-prisma-warm">
-      <img
-        src={image}
-        alt={`Proyecto: ${title}`}
-        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-        loading="lazy"
-      />
-    </div>
-  ) : (
-    <div class="h-48 bg-prisma-warm flex items-center justify-center">
-      <span class="text-6xl font-black text-prisma-red-muted select-none">{number}</span>
-    </div>
-  )}
+  <!-- Columna 1: Cuadro de color con logo -->
+  <div
+    class="flex flex-col items-center justify-center p-6 sm:p-8 min-h-[160px] sm:min-h-[200px]"
+    style={`background-color: ${bgColor};`}
+  >
+    <img
+      src="/images/logos/areas.png"
+      alt="Prisma Global Club"
+      class="w-20 sm:w-24 lg:w-28 object-contain"
+      loading="lazy"
+      onerror="this.style.display='none'"
+    />
+  </div>
 
-  <!-- Contenido -->
-  <div class="flex flex-col flex-1 p-8">
-    <div class="flex items-center gap-3 mb-5">
-      <span class="text-sm font-black text-prisma-red-muted select-none">{number}</span>
-      <div class="w-5 h-5 text-prisma-red">
+  <!-- Columna 2: Contenido central -->
+  <div class="bg-prisma-white p-6 sm:p-8 flex flex-col justify-center">
+
+    <!-- Ícono + Título -->
+    <div class="flex items-center gap-3 mb-3">
+      <div class="w-6 h-6 text-prisma-red shrink-0">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d={icon} />
         </svg>
       </div>
+      <h3 class="text-base sm:text-lg font-black text-prisma-dark leading-tight">
+        {title}
+      </h3>
     </div>
 
-    <h3 class="text-xl font-bold text-prisma-dark mb-3 leading-tight">
-      {title}
-    </h3>
-
-    <p class="text-prisma-gray text-sm leading-relaxed mb-6 flex-1">
+    <!-- Descripción -->
+    <p class="text-prisma-gray text-sm leading-relaxed mb-5">
       {description}
     </p>
 
+    <!-- ODS Badges -->
     <div class="flex flex-wrap gap-2">
       {ods.map((o) => (
-        <Badge variant="ods">ODS {o.number} — {o.title}</Badge>
+        <span class="inline-block px-2.5 py-1 text-xs font-semibold bg-prisma-warm text-prisma-gray rounded border border-prisma-border">
+          ODS {o.number} — {o.title}
+        </span>
       ))}
     </div>
   </div>
 
-  <div class="absolute bottom-0 left-0 h-0.5 w-0 bg-prisma-red group-hover:w-full transition-all duration-500 ease-out" aria-hidden="true"></div>
+  <!-- Columna 3: Foto del proyecto (solo tablet/desktop) -->
+  <div class="hidden lg:block bg-prisma-warm-dark overflow-hidden">
+    {image ? (
+      <img
+        src={image}
+        alt={`Proyecto: ${title}`}
+        class="w-full h-full object-cover hover:scale-105 transition-transform duration-500 ease-out"
+        loading="lazy"
+        onerror="this.parentElement.style.background='#f5f5f5'"
+      />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center bg-prisma-warm">
+        <div class="w-8 h-8 text-prisma-red-muted">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d={icon} />
+          </svg>
+        </div>
+      </div>
+    )}
+  </div>
+
+  <!-- Foto en mobile/tablet (debajo del contenido) -->
+  {image && (
+    <div class="lg:hidden h-44 bg-prisma-warm-dark overflow-hidden sm:col-span-2">
+      <img
+        src={image}
+        alt={`Proyecto: ${title}`}
+        class="w-full h-full object-cover"
+        loading="lazy"
+      />
+    </div>
+  )}
 </article>

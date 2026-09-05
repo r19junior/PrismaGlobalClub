@@ -16,30 +16,56 @@ import { orgChart } from '../../data/organization';
       <p class="text-prisma-gray">Una estructura que convierte propósito en acción.</p>
     </div>
 
-    <!-- Organigrama Desktop -->
-    <div class="hidden lg:block space-y-10">
+    <!-- Organigrama Desktop (Estilo Mapa/Árbol) -->
+    <div class="hidden lg:flex flex-col items-center">
       {orgChart.map((level, li) => (
-        <div>
+        <div class="flex flex-col items-center w-full">
+          <!-- Línea vertical conectora desde el nivel anterior -->
           {li > 0 && (
-            <div class="flex justify-center mb-4" aria-hidden="true">
-              <div class="w-px h-6 bg-prisma-border"></div>
-            </div>
+            <div class="w-px h-10 bg-prisma-dark/40"></div>
           )}
 
-          <div class="flex items-center gap-4 mb-6">
-            <span class="text-xs font-black uppercase tracking-widest text-prisma-red">Nivel {level.level}</span>
-            <div class="flex-1 h-px bg-prisma-border"></div>
-            <span class="text-xs font-semibold text-prisma-gray-light">{level.label}</span>
+          <!-- Caja del Nivel (Padre) -->
+          <div class="border-[1.5px] border-prisma-dark rounded-xl overflow-hidden shadow-sm bg-white text-center w-64 relative z-10">
+            <div class="bg-prisma-red/60 text-prisma-dark font-black p-2.5 text-sm uppercase tracking-wide">
+              {level.label}
+            </div>
           </div>
 
-          <div class={`grid gap-4 ${level.departments.length === 1 ? 'grid-cols-1 max-w-sm mx-auto' : `grid-cols-${Math.min(level.departments.length, 4)}`}`}>
-            {level.departments.map((dept) => (
-              <div class="bg-prisma-white rounded-xl p-5 border border-prisma-border hover:border-prisma-red/30 transition-colors duration-200">
-                <p class="text-xs font-black uppercase tracking-wider text-prisma-gray-light mb-3">{dept.name}</p>
-                <div class="space-y-1 divide-y divide-prisma-border">
-                  {dept.members.map((person) => (
-                    <PersonCard {...person} />
-                  ))}
+          <!-- Línea vertical conectora hacia los hijos -->
+          <div class="w-px h-8 bg-prisma-dark/40"></div>
+
+          <!-- Hijos (Departamentos) -->
+          <div class="flex justify-center relative w-full">
+            {level.departments.map((dept, index) => (
+              <div class="relative flex flex-col items-center px-4 w-56">
+                <!-- Línea horizontal conectora (solo si hay más de 1 hijo) -->
+                {level.departments.length > 1 && (
+                  <div class="absolute top-0 h-px bg-prisma-dark/40"
+                       class:list={[
+                         index === 0 ? "left-1/2 right-0" : 
+                         index === level.departments.length - 1 ? "left-0 right-1/2" : 
+                         "left-0 right-0"
+                       ]}>
+                  </div>
+                )}
+                
+                <!-- Línea vertical individual hacia la caja -->
+                <div class="w-px h-6 bg-prisma-dark/40"></div>
+                
+                <!-- Caja del Departamento -->
+                <div class="border-[1.5px] border-prisma-dark rounded-xl overflow-hidden bg-white text-center w-full shadow-sm">
+                   <div class="bg-prisma-red/30 text-prisma-dark font-bold p-2 text-xs uppercase border-b-[1.5px] border-prisma-dark leading-tight h-12 flex items-center justify-center">
+                     {dept.name}
+                   </div>
+                   <div class="p-3 text-sm text-prisma-dark font-medium space-y-1">
+                     {dept.members.map((m) => (
+                       <div>
+                         <span class="block">{m.name}</span>
+                         {/* Opcional: mostrar rol en gris <span class="block text-[10px] text-prisma-gray">{m.role}</span> */}
+                       </div>
+                     ))}
+                   </div>
                 </div>
               </div>
             ))}

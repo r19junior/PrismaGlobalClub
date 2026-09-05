@@ -1,0 +1,55 @@
+---
+import Badge from '../ui/Badge.astro';
+import type { Pillar } from '../../data/pillars';
+
+interface Props extends Pillar {}
+
+const { number, title, description, ods, icon, image } = Astro.props;
+---
+
+<article class="group relative flex flex-col border-t border-prisma-border hover:border-prisma-red transition-colors duration-300 cursor-default overflow-hidden">
+
+  <!-- Imagen del proyecto -->
+  {image ? (
+    <div class="h-48 overflow-hidden bg-prisma-warm">
+      <img
+        src={image}
+        alt={`Proyecto: ${title}`}
+        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+        loading="lazy"
+      />
+    </div>
+  ) : (
+    <div class="h-48 bg-prisma-warm flex items-center justify-center">
+      <span class="text-6xl font-black text-prisma-red-muted select-none">{number}</span>
+    </div>
+  )}
+
+  <!-- Contenido -->
+  <div class="flex flex-col flex-1 p-8">
+    <div class="flex items-center gap-3 mb-5">
+      <span class="text-sm font-black text-prisma-red-muted select-none">{number}</span>
+      <div class="w-5 h-5 text-prisma-red">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d={icon} />
+        </svg>
+      </div>
+    </div>
+
+    <h3 class="text-xl font-bold text-prisma-dark mb-3 leading-tight">
+      {title}
+    </h3>
+
+    <p class="text-prisma-gray text-sm leading-relaxed mb-6 flex-1">
+      {description}
+    </p>
+
+    <div class="flex flex-wrap gap-2">
+      {ods.map((o) => (
+        <Badge variant="ods">ODS {o.number} — {o.title}</Badge>
+      ))}
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-0 h-0.5 w-0 bg-prisma-red group-hover:w-full transition-all duration-500 ease-out" aria-hidden="true"></div>
+</article>

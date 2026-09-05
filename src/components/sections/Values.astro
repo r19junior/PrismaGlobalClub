@@ -1,0 +1,47 @@
+---
+import Container from '../ui/Container.astro';
+import { values } from '../../data/values';
+---
+
+<section id="valores" class="py-24 lg:py-32 bg-prisma-white" aria-labelledby="values-title">
+  <Container>
+    <div class="max-w-xl mb-16">
+      <span class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-prisma-red mb-4">
+        Lo que nos mueve
+      </span>
+      <h2 id="values-title" class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight text-prisma-dark">
+        Nuestros valores
+      </h2>
+    </div>
+
+    <div class="divide-y divide-prisma-border">
+      {values.map((value) => (
+        <div class="group flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-8 py-8 hover:pl-2 transition-all duration-300">
+          <span
+            class="text-5xl sm:text-6xl font-black text-prisma-red-muted leading-none shrink-0 select-none w-16 group-hover:opacity-60 transition-opacity duration-300"
+            aria-hidden="true"
+          >
+            {value.number}
+          </span>
+
+          <div class="flex-1 flex flex-col sm:flex-row sm:items-start sm:gap-8">
+            <div class="flex items-center gap-3 mb-2 sm:mb-0 sm:w-48 shrink-0">
+              <div class="w-6 h-6 text-prisma-red" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d={value.icon} />
+                </svg>
+              </div>
+              <h3 class="text-base font-black uppercase tracking-wide text-prisma-dark">
+                {value.name}
+              </h3>
+            </div>
+
+            <p class="text-prisma-gray text-sm leading-relaxed flex-1">
+              {value.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

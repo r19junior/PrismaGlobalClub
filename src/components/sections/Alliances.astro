@@ -1,0 +1,27 @@
+---
+import Container from '../ui/Container.astro';
+import AllianceCard from '../cards/AllianceCard.astro';
+import { alliances } from '../../data/alliances';
+---
+
+<section id="alianzas" class="py-24 lg:py-32 bg-prisma-white" aria-labelledby="alliances-title">
+  <Container>
+    <div class="max-w-2xl mb-16">
+      <span class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-prisma-red mb-4">
+        Ecosistema
+      </span>
+      <h2 id="alliances-title" class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight text-prisma-dark mb-5">
+        Ningún impacto se construye solo.
+      </h2>
+      <p class="text-prisma-gray leading-relaxed">
+        Prisma opera mediante una red estratégica de aliados que potencian el alcance, la credibilidad y el impacto de cada proyecto.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {alliances.map((alliance) => (
+        <AllianceCard {...alliance} />
+      ))}
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,43 @@
+---
+import Container from '../ui/Container.astro';
+import { socialChannels } from '../../data/social';
+---
+
+<section id="comunicacion" class="py-24 lg:py-32 bg-prisma-warm" aria-labelledby="comm-title">
+  <Container>
+    <div class="max-w-xl mb-16">
+      <span class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-prisma-red mb-4">
+        Canales
+      </span>
+      <h2 id="comm-title" class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight text-prisma-dark">
+        Prisma también comunica.
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {socialChannels.map((channel) => (
+        <a
+          href={channel.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group flex flex-col p-7 bg-prisma-white rounded-2xl border border-prisma-border hover:border-prisma-red/30 hover:shadow-sm transition-all duration-300"
+          aria-label={`${channel.name} de Prisma Global Club: ${channel.description}`}
+        >
+          <div class="w-8 h-8 mb-5 text-prisma-gray group-hover:text-prisma-red transition-colors duration-200">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d={channel.icon} />
+            </svg>
+          </div>
+
+          <h3 class="text-base font-black text-prisma-dark mb-1">{channel.name}</h3>
+          <p class="text-xs text-prisma-red font-mono mb-4">{channel.handle}</p>
+          <p class="text-sm text-prisma-gray leading-relaxed flex-1">{channel.description}</p>
+
+          <div class="mt-4 pt-4 border-t border-prisma-border">
+            <span class="text-xs text-prisma-gray-light">{channel.audience}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </Container>
+</section>

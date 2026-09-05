@@ -1,0 +1,80 @@
+---
+import Container from '../ui/Container.astro';
+
+// Foto del equipo en la sección "Quiénes somos"
+// Pasos: coloca la imagen en public/images/team/team-01.jpg
+// La imagen aparece automáticamente al existir el archivo
+const teamPhoto = "/images/team/team-01.jpg";
+const teamPhotoCover = "/images/team/team-cover.jpg";
+---
+
+<section id="prisma" class="py-24 lg:py-32 bg-prisma-white" aria-labelledby="welcome-title">
+  <Container>
+
+    <!-- Foto panorámica del equipo (team-cover) -->
+    <div class="mb-16 rounded-2xl overflow-hidden h-64 lg:h-80 bg-prisma-warm-dark">
+      <img
+        src={teamPhotoCover}
+        alt="Equipo completo de Prisma Global Club"
+        class="w-full h-full object-cover object-center"
+        loading="lazy"
+        onerror="this.parentElement.style.display='none'"
+      />
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
+
+      <!-- Texto editorial -->
+      <div>
+        <span class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-prisma-red mb-5">
+          Quiénes somos
+        </span>
+        <h2 id="welcome-title" class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight text-prisma-dark mb-8">
+          Una comunidad que transforma desde la acción.
+        </h2>
+        <div class="space-y-5 text-prisma-gray leading-relaxed">
+          <p>
+            Prisma Global Club es una organización juvenil que promueve el voluntariado, la formación y el impacto social a través de proyectos sostenibles en comunidades locales.
+          </p>
+          <p>
+            Nace de la convicción de que los jóvenes no solo participan, sino que <strong class="font-semibold text-prisma-dark">lideran cambios reales</strong> cuando cuentan con espacios, guías y alianzas estratégicas.
+          </p>
+        </div>
+      </div>
+
+      <!-- Foto del equipo + palabras clave -->
+      <div class="lg:pt-4 space-y-8">
+
+        <!-- Foto secundaria del equipo (team-01) -->
+        <div class="rounded-xl overflow-hidden h-48 bg-prisma-warm-dark">
+          <img
+            src={teamPhoto}
+            alt="Voluntarios de Prisma en actividad"
+            class="w-full h-full object-cover object-center hover:scale-105 transition-transform duration-500"
+            loading="lazy"
+            onerror="this.parentElement.style.display='none'"
+          />
+        </div>
+
+        <!-- Palabras clave -->
+        <div class="grid grid-cols-2 gap-px bg-prisma-border">
+          {[
+            { word: 'Voluntariado', desc: 'Acción comprometida' },
+            { word: 'Formación',   desc: 'Crecimiento continuo' },
+            { word: 'Impacto',     desc: 'Resultados medibles' },
+            { word: 'Comunidad',   desc: 'Red de líderes' },
+          ].map((item) => (
+            <div class="bg-prisma-white p-6 group hover:bg-prisma-red-muted transition-colors duration-200">
+              <p class="text-xs font-semibold uppercase tracking-wider text-prisma-gray-light mb-1 group-hover:text-prisma-red transition-colors duration-200">
+                {item.desc}
+              </p>
+              <p class="text-lg font-black text-prisma-dark leading-none">
+                {item.word}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

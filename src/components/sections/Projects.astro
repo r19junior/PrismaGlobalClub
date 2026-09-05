@@ -1,0 +1,76 @@
+---
+import Container from '../ui/Container.astro';
+import { projects } from '../../data/projects';
+
+// Mapa de colores por pilar
+const pillarColor: Record<string, string> = {
+  'Responsabilidad Ciudadana':         'bg-prisma-red-muted text-prisma-red',
+  'Desarrollo e Inclusión Social':      'bg-prisma-warm-dark text-prisma-gray',
+  'Patrimonio Cultural y Artístico':    'bg-prisma-dark/10 text-prisma-dark',
+};
+---
+
+<section id="proyectos" class="py-24 lg:py-32 bg-prisma-warm" aria-labelledby="projects-title">
+  <Container>
+    <!-- Header -->
+    <div class="max-w-2xl mb-16">
+      <span class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-prisma-red mb-4">
+        Nuestro trabajo
+      </span>
+      <h2 id="projects-title" class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight text-prisma-dark mb-5">
+        Proyectos que dejan huella.
+      </h2>
+      <p class="text-prisma-gray leading-relaxed">
+        Acciones concretas en comunidades reales. Cada proyecto es una historia de jóvenes que decidieron actuar.
+      </p>
+    </div>
+
+    <!-- Grid de proyectos -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map((project) => (
+        <article class="group flex flex-col bg-prisma-white rounded-2xl overflow-hidden border border-prisma-border hover:border-prisma-red hover:shadow-md transition-all duration-300">
+
+          <!-- Imagen -->
+          <div class="relative h-52 overflow-hidden bg-prisma-warm-dark">
+            <img
+              src={project.image}
+              alt={project.title}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+              loading="lazy"
+              onerror="this.parentElement.classList.add('flex','items-center','justify-center'); this.style.display='none'; this.parentElement.innerHTML += '<span class=\'text-4xl font-black text-prisma-red-muted select-none\'>' + this.alt.charAt(0) + '</span>'"
+            />
+            <!-- Overlay sutil en hover -->
+            <div class="absolute inset-0 bg-prisma-dark/0 group-hover:bg-prisma-dark/10 transition-colors duration-300"></div>
+          </div>
+
+          <!-- Contenido -->
+          <div class="flex flex-col flex-1 p-6">
+            <!-- Categoría + Pilar -->
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              <span class={`text-xs font-semibold px-2.5 py-1 rounded-full ${pillarColor[project.pillar] ?? 'bg-prisma-warm text-prisma-gray'}`}>
+                {project.category}
+              </span>
+            </div>
+
+            <!-- Título -->
+            <h3 class="text-base font-bold text-prisma-dark leading-tight mb-2">
+              {project.title}
+            </h3>
+
+            <!-- Descripción -->
+            <p class="text-sm text-prisma-gray leading-relaxed flex-1">
+              {project.description}
+            </p>
+
+            <!-- Pilar en footer de la card -->
+            <div class="mt-4 pt-4 border-t border-prisma-border">
+              <span class="text-xs text-prisma-gray-light font-medium">
+                {project.pillar}
+              </span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </Container>
+</section>

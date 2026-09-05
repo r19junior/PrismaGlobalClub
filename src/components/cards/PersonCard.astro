@@ -1,0 +1,26 @@
+---
+import type { Person } from '../../data/organization';
+
+interface Props extends Person {}
+
+const { name, role } = Astro.props;
+
+const initials = name
+  .split(' ')
+  .slice(0, 2)
+  .map((n) => n[0])
+  .join('');
+---
+
+<div class="flex items-center gap-3 py-2">
+  <div
+    class="w-9 h-9 rounded-full bg-prisma-red-muted flex items-center justify-center shrink-0"
+    aria-hidden="true"
+  >
+    <span class="text-xs font-bold text-prisma-red">{initials}</span>
+  </div>
+  <div>
+    <p class="text-sm font-semibold text-prisma-dark leading-tight">{name}</p>
+    <p class="text-xs text-prisma-gray">{role}</p>
+  </div>
+</div>

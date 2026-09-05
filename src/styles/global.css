@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/* ==============================
+   PRISMA GLOBAL CLUB — Design System (Tailwind v4)
+   ============================== */
+
+@theme {
+  --color-prisma-red:        #8B1A2E;
+  --color-prisma-red-light:  #C2274A;
+  --color-prisma-red-muted:  #F9E8EC;
+  --color-prisma-dark:       #1A1A1A;
+  --color-prisma-gray:       #6B6B6B;
+  --color-prisma-gray-light: #9E9E9E;
+  --color-prisma-warm:       #F5F3F1;
+  --color-prisma-warm-dark:  #EDE9E5;
+  --color-prisma-white:      #FEFEFE;
+  --color-prisma-border:     #E8E3DF;
+
+  --font-family-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-family-sans);
+    color: var(--color-prisma-dark);
+    background-color: var(--color-prisma-white);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--color-prisma-dark);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-prisma-red);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background-color: var(--color-prisma-red-muted);
+    color: var(--color-prisma-red);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    html { scroll-behavior: auto; }
+  }
+}
+
+@layer utilities {
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .animate-fade-up   { animation: fadeUp   0.6s ease both; }
+  .animate-fade-in   { animation: fadeIn   0.5s ease both; }
+  .animate-scale-in  { animation: scaleIn  0.5s ease both; }
+
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+  .delay-500 { animation-delay: 0.5s; }
+}

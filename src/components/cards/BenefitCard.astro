@@ -1,0 +1,27 @@
+---
+import type { Benefit } from '../../data/benefits';
+
+interface Props extends Benefit {}
+
+const { number, title, description, icon } = Astro.props;
+---
+
+<article class="group flex gap-6 py-8 border-b border-prisma-border last:border-0 hover:translate-x-1 transition-transform duration-200">
+  <div class="shrink-0 w-14">
+    <span class="text-5xl font-black text-prisma-red-muted leading-none group-hover:opacity-70 transition-opacity duration-300 select-none">
+      {number}
+    </span>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 text-prisma-red shrink-0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d={icon} />
+        </svg>
+      </div>
+      <h3 class="text-lg font-bold text-prisma-dark">{title}</h3>
+    </div>
+    <p class="text-prisma-gray text-sm leading-relaxed">{description}</p>
+  </div>
+</article>

@@ -1,0 +1,87 @@
+---
+import { socialChannels } from '../../data/social';
+
+// Logo blanco para el footer — activo con PNG
+const showLogoImage = true;
+const logoSrc = "/images/logos/prisma-logo-white.png";
+
+const navLinks = [
+  { label: 'Inicio',        href: '#inicio' },
+  { label: 'Prisma',        href: '#prisma' },
+  { label: 'Pilares',       href: '#pilares' },
+  { label: 'Proyectos',     href: '#proyectos' },
+  { label: 'Organización',  href: '#organizacion' },
+  { label: 'Alianzas',      href: '#alianzas' },
+  { label: 'Beneficios',    href: '#beneficios' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-prisma-dark text-white" role="contentinfo">
+  <div class="max-w-6xl mx-auto px-6 lg:px-8 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 pb-12 border-b border-white/10">
+
+      <!-- Logo + Mantra -->
+      <div class="md:col-span-1">
+        <a href="#inicio" aria-label="Prisma Global Club — Inicio" class="inline-block mb-4 group">
+          <img
+            src={logoSrc}
+            alt="Prisma Global Club"
+            class="h-14 w-auto object-contain group-hover:opacity-80 transition-opacity duration-200"
+            loading="lazy"
+          />
+        </a>
+        <p class="text-white/60 text-sm leading-relaxed max-w-xs italic">
+          "Excelencia que transforma realidades"
+        </p>
+      </div>
+
+      <!-- Links de navegación -->
+      <nav aria-label="Navegación del pie de página">
+        <p class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-5">Navegación</p>
+        <ul class="grid grid-cols-2 gap-y-2.5 gap-x-4" role="list">
+          {navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm text-white/60 hover:text-white transition-colors duration-200"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <!-- Redes sociales -->
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-5">Síguenos</p>
+        <ul class="flex flex-col gap-3" role="list">
+          {socialChannels.map((channel) => (
+            <li>
+              <a
+                href={channel.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-3 text-sm text-white/60 hover:text-white transition-colors duration-200"
+                aria-label={`Visitar ${channel.name} de Prisma Global Club`}
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4 shrink-0" aria-hidden="true">
+                  <path d={channel.icon} />
+                </svg>
+                <span>{channel.name}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-8 text-center">
+      <p class="text-xs text-white/30">
+        © {year} Prisma Global Club. Todos los derechos reservados.
+      </p>
+    </div>
+  </div>
+</footer>

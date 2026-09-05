@@ -1,0 +1,12 @@
+---
+interface Props {
+  class?: string;
+  as?: 'div' | 'section' | 'article';
+}
+
+const { class: extraClass = '', as: Tag = 'div' } = Astro.props;
+---
+
+<Tag class={`max-w-6xl mx-auto px-6 lg:px-8 ${extraClass}`}>
+  <slot />
+</Tag>

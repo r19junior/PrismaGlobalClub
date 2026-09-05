@@ -1,0 +1,32 @@
+---
+import type { Alliance } from '../../data/alliances';
+
+interface Props extends Alliance {}
+
+const { number, type, entity, objective, value, icon } = Astro.props;
+---
+
+<article class="group p-8 bg-prisma-white border border-prisma-border rounded-2xl hover:border-prisma-red hover:shadow-sm transition-all duration-300">
+  <div class="flex items-start gap-4 mb-5">
+    <div class="w-10 h-10 shrink-0 text-prisma-red">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d={icon} />
+      </svg>
+    </div>
+    <div>
+      <span class="text-xs font-semibold uppercase tracking-widest text-prisma-gray-light">{number}</span>
+      <h3 class="text-lg font-bold text-prisma-dark leading-tight">{type}</h3>
+      <p class="text-sm text-prisma-red font-medium">{entity}</p>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <span class="text-xs font-semibold uppercase tracking-wider text-prisma-gray-light block mb-1">Objetivo</span>
+    <p class="text-sm text-prisma-gray leading-relaxed">{objective}</p>
+  </div>
+
+  <div>
+    <span class="text-xs font-semibold uppercase tracking-wider text-prisma-gray-light block mb-1">Propuesta de valor</span>
+    <p class="text-sm text-prisma-gray leading-relaxed">{value}</p>
+  </div>
+</article>

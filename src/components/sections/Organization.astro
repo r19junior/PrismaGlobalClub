@@ -1,0 +1,83 @@
+---
+import Container from '../ui/Container.astro';
+import PersonCard from '../cards/PersonCard.astro';
+import { orgChart } from '../../data/organization';
+---
+
+<section id="organizacion" class="py-24 lg:py-32 bg-prisma-warm" aria-labelledby="org-title">
+  <Container>
+    <div class="max-w-xl mb-16">
+      <span class="inline-block text-xs font-bold uppercase tracking-[0.2em] text-prisma-red mb-4">
+        Estructura
+      </span>
+      <h2 id="org-title" class="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight text-prisma-dark mb-3">
+        Las personas detrás de Prisma
+      </h2>
+      <p class="text-prisma-gray">Una estructura que convierte propósito en acción.</p>
+    </div>
+
+    <!-- Organigrama Desktop -->
+    <div class="hidden lg:block space-y-10">
+      {orgChart.map((level, li) => (
+        <div>
+          {li > 0 && (
+            <div class="flex justify-center mb-4" aria-hidden="true">
+              <div class="w-px h-6 bg-prisma-border"></div>
+            </div>
+          )}
+
+          <div class="flex items-center gap-4 mb-6">
+            <span class="text-xs font-black uppercase tracking-widest text-prisma-red">Nivel {level.level}</span>
+            <div class="flex-1 h-px bg-prisma-border"></div>
+            <span class="text-xs font-semibold text-prisma-gray-light">{level.label}</span>
+          </div>
+
+          <div class={`grid gap-4 ${level.departments.length === 1 ? 'grid-cols-1 max-w-sm mx-auto' : `grid-cols-${Math.min(level.departments.length, 4)}`}`}>
+            {level.departments.map((dept) => (
+              <div class="bg-prisma-white rounded-xl p-5 border border-prisma-border hover:border-prisma-red/30 transition-colors duration-200">
+                <p class="text-xs font-black uppercase tracking-wider text-prisma-gray-light mb-3">{dept.name}</p>
+                <div class="space-y-1 divide-y divide-prisma-border">
+                  {dept.members.map((person) => (
+                    <PersonCard {...person} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Organigrama Móvil: Acordeones HTML nativos -->
+    <div class="lg:hidden space-y-3">
+      {orgChart.map((level) => (
+        <details class="group bg-prisma-white rounded-xl border border-prisma-border overflow-hidden">
+          <summary class="flex items-center justify-between px-5 py-4 cursor-pointer list-none select-none">
+            <div>
+              <span class="text-xs font-black uppercase tracking-widest text-prisma-red block mb-0.5">Nivel {level.level}</span>
+              <span class="text-sm font-bold text-prisma-dark">{level.label}</span>
+            </div>
+            <svg
+              class="w-4 h-4 text-prisma-gray transition-transform duration-200 group-open:rotate-180"
+              viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+            >
+              <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+            </svg>
+          </summary>
+          <div class="px-5 pb-4 space-y-4 border-t border-prisma-border">
+            {level.departments.map((dept) => (
+              <div class="pt-3">
+                <p class="text-xs font-bold uppercase tracking-wider text-prisma-gray-light mb-2">{dept.name}</p>
+                <div class="space-y-0.5">
+                  {dept.members.map((person) => (
+                    <PersonCard {...person} />
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </details>
+      ))}
+    </div>
+  </Container>
+</section>

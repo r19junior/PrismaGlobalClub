@@ -1,11 +1,45 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Secciones
+import Hero from '../components/sections/Hero.astro';
+import Welcome from '../components/sections/Welcome.astro';
+import GoldenCircle from '../components/sections/GoldenCircle.astro';
+import MissionVision from '../components/sections/MissionVision.astro';
+import Values from '../components/sections/Values.astro';
+import Pillars from '../components/sections/Pillars.astro';
+import Projects from '../components/sections/Projects.astro';
+import VolunteerProfile from '../components/sections/VolunteerProfile.astro';
+import Organization from '../components/sections/Organization.astro';
+import Alliances from '../components/sections/Alliances.astro';
+import Communication from '../components/sections/Communication.astro';
+import Benefits from '../components/sections/Benefits.astro';
+import FinalCTA from '../components/sections/FinalCTA.astro';
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Prisma Global Club | Excelencia que transforma realidades"
+  description="Prisma Global Club conecta jóvenes, voluntariado y proyectos de impacto social para transformar realidades con visión global."
+>
+  <Navbar />
+
+  <main id="main-content">
+    <Hero />
+    <Welcome />
+    <GoldenCircle />
+    <MissionVision />
+    <Values />
+    <Pillars />
+    <Projects />
+    <VolunteerProfile />
+    <Organization />
+    <Alliances />
+    <Communication />
+    <Benefits />
+    <FinalCTA />
+  </main>
+
+  <Footer />
 </Layout>

@@ -1,0 +1,21 @@
+---
+interface Props {
+  variant?: 'ods' | 'default';
+  class?: string;
+}
+
+const { variant = 'default', class: extraClass = '' } = Astro.props;
+
+const base = 'inline-flex items-center px-2.5 py-1 text-xs font-semibold rounded tracking-wide';
+
+const variants = {
+  default: 'bg-prisma-red-muted text-prisma-red',
+  ods:     'bg-prisma-warm-dark text-prisma-gray',
+};
+
+const classes = [base, variants[variant], extraClass].join(' ');
+---
+
+<span class={classes}>
+  <slot />
+</span>

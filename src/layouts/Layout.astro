@@ -15,7 +15,7 @@ const {
 
 const canonicalUrl = Astro.url.href;
 // URL absoluta para Open Graph (requerida por WhatsApp, Twitter, etc.)
-const siteBase = Astro.url.origin;
+const siteBase = Astro.site ? Astro.site.origin : Astro.url.origin;
 const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${siteBase}${ogImage}`;
 ---
 
